@@ -1,0 +1,50 @@
+{
+  "name": "ethereum-cyfrin-course",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.foundry/bin"
+  },
+
+  "forwardPorts": [3000, 8545],
+  "portsAttributes": {
+    "3000": { "label": "Frontend dev server", "onAutoForward": "openBrowser" },
+    "8545": { "label": "Anvil local node", "onAutoForward": "silent" }
+  },
+
+  "remoteUser": "vscode",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "NomicFoundation.hardhat-solidity",
+        "tamasfe.even-better-toml",
+        "ms-vscode.makefile-tools",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[solidity]": {
+          "editor.defaultFormatter": "NomicFoundation.hardhat-solidity"
+        },
+        "solidity.telemetry": false,
+        "files.associations": {
+          "foundry.toml": "toml",
+          "remappings.txt": "properties"
+        }
+      }
+    }
+  }
+}
