@@ -11,7 +11,7 @@ contract SimpleStorage {
 
     bytes1 minBytes1 = "A";
 
-    function store(uint256 _favoriteNumber) public {
+    function store(uint256 _favoriteNumber) public virtual {
         favoriteNumber = _favoriteNumber;
     }
 
