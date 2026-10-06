@@ -9,7 +9,9 @@
     "node": "hardhat node",
     "deploy": "hardhat ignition deploy ignition/modules/SimpleStorage.ts --network localhost",
     "redeploy": "hardhat ignition deploy ignition/modules/SimpleStorage.ts --network localhost --reset",
-    "deploy:sepolia": "hardhat ignition deploy ignition/modules/SimpleStorage.ts --network sepolia"
+    "deploy:sepolia": "hardhat ignition deploy ignition/modules/SimpleStorage.ts --network sepolia",
+    "deploy:factory": "hardhat ignition deploy ignition/modules/StorageFactory.ts --network localhost",
+    "deploy:all": "npm run deploy && npm run deploy:factory"
   },
   "keywords": [],
   "author": "",
