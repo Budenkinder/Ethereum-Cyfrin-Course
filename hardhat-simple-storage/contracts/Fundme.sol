@@ -31,15 +31,15 @@ contract Fundme {
 }
 
 contract GoldPriceContract {
-    AggregatorV3Interface internal priceFeed;
-    // The Chainlink price feed contract address
-    constructor() {
-        priceFeed = AggregatorV3Interface(
-            0x8468b2bDCE073A157E560AA4D9CcF6dB1DB98507
-        );
+    AggregatorV3Interface internal immutable priceFeed;
+
+    constructor(address feedAddress) {
+        require(feedAddress.code.length > 0, "No contract at feed address");
+        priceFeed = AggregatorV3Interface(feedAddress);
     }
+
     // Get the latest gold price
-    function getLatestGoldPrice() public view returns (int) {
+    function getLatestGoldPrice() public view returns (int256) {
         (, int price, , , ) = priceFeed.latestRoundData();
         return price;
     }
